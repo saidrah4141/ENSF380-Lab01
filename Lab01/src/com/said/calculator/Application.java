@@ -22,7 +22,7 @@ public class Application {
 	        
 	        while(!operation.equals("exit")) {
 	        	System.out.println("\nEnter operation (add, subtract, multiply, divide, "
-	        			+ "pow, sqrt, log, log10, sin, cos, tan, factorial) or 'exit' "
+	        			+ "pow, sqrt, log, log10, sin, cos, tan, factorial,permutation) or 'exit' "
 	        			+ "to quit:");
 
 	        operation = scanner.next();
@@ -63,6 +63,9 @@ public class Application {
 	                case "pow":
 	                    System.out.println("Result: " + power(num1, num2));
 	                    break;
+	                case "permutation":
+	                	System.out.println("Result" + permutations(num1,num2));
+	                	break;
 	                default:
 	                    System.out.println("Invalid operation.");
 	                    break;
@@ -277,6 +280,54 @@ public class Application {
 	    return Math.tan(angleRadians);
 	}
 
+	/*
+	 * Calculates the permutation of two numbers
+	 * 
+	 * @param numObj total number of objects and select number of objects selected
+	 * @return the permutation of those two numbers (double).
+	 */
+	public static double permutations(double total, double select) {
+		if (select<0 || total <0) {
+			System.out.println("Can't have negative");
+			return 0;
+		} else if (total<select) {
+			System.out.println("Can't select more items than availble");
+			return 0;
+		} else if (total>100 || select>100) {
+			System.out.println("Can't have/select more than 100 items");
+			return 0;
+		} 
+		while(select!=0) {
+			return total * permutations(total-1,select-1);
+		}
+		return 1;
+		
+	}
+	
+	/*
+	 * Calculates the permutation of two numbers
+	 * 
+	 * @param numObj total number of objects and select number of objects selected
+	 * @return the permutation of those two numbers (double).
+	 */
+	public static double permutationsV2(double total, double select) {
+		  if (select<0 || total <0) {
+			System.out.println("Can't have negative");
+			return 0;
+		} else if (total<select) {
+			System.out.println("Can't select more items than availble");
+			return 0;
+		} else if (total>100 || select>100) {
+			System.out.println("Can't have/select more than 100 items");
+			return 0;
+		} 
+		int permutation=1;
+		
+		for(int i=(int)select;i>0;i--) {
+			permutation*=(total-i);
+		}
+		return(permutation);
+	}
 
 
 
